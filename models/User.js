@@ -14,14 +14,14 @@ const UserSchema = new mongoose.Schema({
 
     type: String,
     required: [true, "Please provide your email."],
-    maxlength: [60, "Owner's Name cannot be more than 60 characters"],
+    maxlength: [60, "Email cannot be more than 60 characters"],
   },
   password: {
     /* The password of your user */
 
     type: String,
     required: [true, 'Please provide your password.'],
-    maxlength: [60, 'Species specified cannot be more than 40 characters'],
+    maxlength: [60, 'Password specified cannot be more than 40 characters'],
   },
   dob: {
     /* User's DOB */
@@ -34,6 +34,7 @@ const UserSchema = new mongoose.Schema({
 
     type: String,
     required: [true, 'Please provide your country.'],
+    maxlength: [60, 'Country specified cannot be more than 40 characters'],
   },
 })
 

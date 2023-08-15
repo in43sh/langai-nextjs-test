@@ -71,6 +71,8 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
     const target = e.target
     const value = target.value
     const name = target.name
+    console.log("value ===> ", value);
+    console.log("name ===> ", name);
 
     setForm({
       ...form,
@@ -78,20 +80,21 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
     })
   }
 
-  /* Makes sure user info is filled for user name, owner name, species, and image url*/
+  /* Makes sure user info is filled for user name, email, password, dob, country */
   const formValidate = () => {
     let err = {}
     if (!form.name) err.name = 'Name is required'
-    if (!form.email) err.owner_name = 'Email is required'
-    if (!form.password) err.species = 'Password is required'
-    if (!form.dob) err.image_url = 'DOB is required'
-    if (!form.country) err.image_url = 'Country is required'
+    if (!form.email) err.email = 'Email is required'
+    if (!form.password) err.password = 'Password is required'
+    if (!form.dob) err.dob = 'DOB is required'
+    if (!form.country) err.country = 'Country is required'
     return err
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const errs = formValidate()
+    console.log("errs ===> ", errs);
     if (Object.keys(errs).length === 0) {
       forNewUser ? postData(form) : putData(form)
     } else {
@@ -116,7 +119,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
         <input
           type="text"
           maxLength="20"
-          name="owner_name"
+          name="email"
           value={form.email}
           onChange={handleChange}
           required
@@ -127,7 +130,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
           type="text"
           maxLength="30"
           name="password"
-          value={form.species}
+          value={form.password}
           onChange={handleChange}
           required
         />
@@ -136,7 +139,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
         <input
           type="number"
           name="dob"
-          value={form.age}
+          value={form.dob}
           onChange={handleChange}
         />
 
@@ -144,7 +147,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
         <textarea
           name="country"
           maxLength="60"
-          value={form.diet}
+          value={form.country}
           onChange={handleChange}
         />
 

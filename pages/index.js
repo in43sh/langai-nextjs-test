@@ -12,7 +12,7 @@ const Index = ({ users }) => (
           <h5 className="user-name">{user.name}</h5>
           <div className="main-content">
             <p className="user-name">{user.name}</p>
-            <p className="owner">Owner: {user.owner_name}</p>
+            <p className="email">Email: {user.email}</p>
 
             {/* Extra User Info: Likes and Dislikes */}
             {/* <div className="likes info">
