@@ -23,12 +23,12 @@ const UserSchema = new mongoose.Schema({
     required: [true, 'Please provide your password.'],
     maxlength: [60, 'Password specified cannot be more than 40 characters'],
   },
-  dob: {
-    /* User's DOB */
+  // dob: {
+  //   /* User's DOB */
 
-    type: Date,
-    required: true,
-  },
+  //   type: Date,
+  //   required: true,
+  // },
   country: {
     /* The country of your user */
 

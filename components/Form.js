@@ -12,7 +12,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
     name: userForm.name,
     email: userForm.email,
     password: userForm.password,
-    dob: userForm.dob,
+    // dob: userForm.dob,
     country: userForm.country,
   })
 
@@ -86,7 +86,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
     if (!form.name) err.name = 'Name is required'
     if (!form.email) err.email = 'Email is required'
     if (!form.password) err.password = 'Password is required'
-    if (!form.dob) err.dob = 'DOB is required'
+    // if (!form.dob) err.dob = 'DOB is required'
     if (!form.country) err.country = 'Country is required'
     return err
   }
@@ -135,13 +135,13 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
           required
         />
 
-        <label htmlFor="dob">DOB</label>
+        {/* <label htmlFor="dob">DOB</label>
         <input
           type="number"
           name="dob"
           value={form.dob}
           onChange={handleChange}
-        />
+        /> */}
 
         <label htmlFor="country">Country</label>
         <textarea
