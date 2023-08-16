@@ -24,7 +24,7 @@ const EditUser = () => {
     name: user.name,
     email: user.email,
     password: user.password,
-    // dob: user.dob,
+    dob: user.dob,
     country: user.country,
   }
 

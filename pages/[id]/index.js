@@ -25,28 +25,13 @@ const UserPage = ({ user }) => {
     <div key={user._id}>
       <div className="card">
         <img src={user.image_url} />
-        <h5 className="user-name">{user.name}</h5>
+        <h5 className="user-name">Name: {user.name}</h5>
         <div className="main-content">
-          <p className="user-name">{user.name}</p>
-          <p className="email">Email: {user.Email}</p>
-
-          {/* Extra User Info: Likes and Dislikes */}
-          {/* <div className="likes info">
-            <p className="label">Likes</p>
-            <ul>
-              {user.likes.map((data, index) => (
-                <li key={index}>{data} </li>
-              ))}
-            </ul>
-          </div>
-          <div className="dislikes info">
-            <p className="label">Dislikes</p>
-            <ul>
-              {user.dislikes.map((data, index) => (
-                <li key={index}>{data} </li>
-              ))}
-            </ul>
-          </div> */}
+          <p className="user-name">Name: {user.name}</p>
+          <p className="email">Email: {user.email}</p>
+          <p className="email">Password: {user.password}</p>
+          <p className="email">Date of Birth: {user.dob}</p>
+          <p className="email">Country: {user.country}</p>
 
           <div className="btn-container">
             <Link href="/[id]/edit" as={`/${user._id}/edit`} legacyBehavior>

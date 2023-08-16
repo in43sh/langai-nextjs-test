@@ -15,24 +15,6 @@ const Index = ({ users }) => (
             <p className="user-name">{user.name}</p>
             <p className="email">Email: {user.email}</p>
 
-            {/* Extra User Info: Likes and Dislikes */}
-            {/* <div className="likes info">
-              <p className="label">Likes</p>
-              <ul>
-                {user.likes.map((data, index) => (
-                  <li key={index}>{data} </li>
-                ))}
-              </ul>
-            </div>
-            <div className="dislikes info">
-              <p className="label">Dislikes</p>
-              <ul>
-                {user.dislikes.map((data, index) => (
-                  <li key={index}>{data} </li>
-                ))}
-              </ul>
-            </div> */}
-
             <div className="btn-container">
               <Link href="/[id]" as={`/${user._id}`} legacyBehavior>
                 <button className="btn view">View</button>
