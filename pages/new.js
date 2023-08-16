@@ -5,7 +5,7 @@ const NewUser = () => {
     name: '',
     email: '',
     password: '',
-    dob: '',
+    // dob: '',
     country: '',
   }
 
