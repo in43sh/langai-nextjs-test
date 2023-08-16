@@ -31,6 +31,7 @@ const UserPage = ({ user }) => {
           <p className="email">Email: {user.email}</p>
           <p className="email">Password: {user.password}</p>
           <p className="email">Date of Birth: {user.dob}</p>
+          <p className="email">typeof Date of Birth: {typeof user.dob}</p>
           <p className="email">Country: {user.country}</p>
 
           <div className="btn-container">

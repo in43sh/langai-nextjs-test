@@ -9,7 +9,7 @@ const Index = ({ users }) => (
       {users.map((user) => (
       <div key={user._id}>
         <div className="card">
-          <img src={user.image_url} />
+          {/* <img src={user.image_url} /> */}
           <h5 className="user-name">{user.name}</h5>
           <div className="main-content">
             <p className="user-name">{user.name}</p>

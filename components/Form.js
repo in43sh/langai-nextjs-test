@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import { mutate } from 'swr'
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { mutate } from "swr";
 
 const Form = ({ formId, userForm, forNewUser = true }) => {
-  const router = useRouter()
-  const contentType = 'application/json'
-  const [errors, setErrors] = useState({})
-  const [message, setMessage] = useState('')
+  const router = useRouter();
+  const contentType = "application/json";
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
 
   const [form, setForm] = useState({
     name: userForm.name,
@@ -14,93 +14,97 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
     password: userForm.password,
     dob: userForm.dob,
     country: userForm.country,
-  })
+  });
 
   /* The PUT method edits an existing entry in the mongodb database. */
   const putData = async (form) => {
-    const { id } = router.query
+    const { id } = router.query;
 
     try {
       const res = await fetch(`/api/users/${id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
           Accept: contentType,
-          'Content-Type': contentType,
+          "Content-Type": contentType,
         },
         body: JSON.stringify(form),
-      })
+      });
 
       // Throw error with status code in case Fetch API req failed
       if (!res.ok) {
-        throw new Error(res.status)
+        throw new Error(res.status);
       }
 
-      const { data } = await res.json()
+      const { data } = await res.json();
 
-      mutate(`/api/users/${id}`, data, false) // Update the local data without a revalidation
-      router.push('/')
+      mutate(`/api/users/${id}`, data, false); // Update the local data without a revalidation
+      router.push("/");
     } catch (error) {
-      setMessage('Failed to update user')
+      setMessage("Failed to update user");
     }
-  }
+  };
 
   /* The POST method adds a new entry in the mongodb database. */
   const postData = async (form) => {
     try {
-      const res = await fetch('/api/users', {
-        method: 'POST',
+      const res = await fetch("/api/users", {
+        method: "POST",
         headers: {
           Accept: contentType,
-          'Content-Type': contentType,
+          "Content-Type": contentType,
         },
         body: JSON.stringify(form),
-      })
+      });
 
       // Throw error with status code in case Fetch API req failed
       if (!res.ok) {
-        throw new Error(res.status)
+        throw new Error(res.status);
       }
 
-      router.push('/')
+      router.push("/");
     } catch (error) {
-      setMessage('Failed to add user')
+      setMessage("Failed to add user");
     }
-  }
+  };
 
   const handleChange = (e) => {
-    const target = e.target
-    const value = target.value
-    const name = target.name
+    const target = e.target;
+    const name = target.name;
+    if (name === "dob") {
+      const value = target.value.str.substring(0, 10);
+    }
+    let value = target.value;
     console.log("value ===> ", value);
-    console.log("name ===> ", name);
+    console.log("typeof value ===> ", typeof value);
+    console.log("typeof name ===> ", typeof name);
 
     setForm({
       ...form,
       [name]: value,
-    })
-  }
+    });
+  };
 
   /* Makes sure user info is filled for user name, email, password, dob, country */
   const formValidate = () => {
-    let err = {}
-    if (!form.name) err.name = 'Name is required'
-    if (!form.email) err.email = 'Email is required'
-    if (!form.password) err.password = 'Password is required'
-    if (!form.dob) err.dob = 'DOB is required'
-    if (!form.country) err.country = 'Country is required'
-    return err
-  }
+    let err = {};
+    if (!form.name) err.name = "Name is required";
+    if (!form.email) err.email = "Email is required";
+    if (!form.password) err.password = "Password is required";
+    if (!form.dob) err.dob = "DOB is required";
+    if (!form.country) err.country = "Country is required";
+    return err;
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const errs = formValidate()
+    e.preventDefault();
+    const errs = formValidate();
     console.log("errs ===> ", errs);
     if (Object.keys(errs).length === 0) {
-      forNewUser ? postData(form) : putData(form)
+      forNewUser ? postData(form) : putData(form);
     } else {
-      setErrors({ errs })
+      setErrors({ errs });
     }
-  }
+  };
 
   return (
     <>
@@ -145,7 +149,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
 
         <label htmlFor="country">Country</label>
         <input
-          type='text'
+          type="text"
           maxLength="30"
           name="country"
           value={form.country}
@@ -164,7 +168,7 @@ const Form = ({ formId, userForm, forNewUser = true }) => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
