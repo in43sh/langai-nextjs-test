@@ -1,7 +1,7 @@
-import '../css/style.css'
-import '../css/form.css'
-import Head from 'next/head'
-import Link from 'next/link'
+import "../css/style.css";
+import "../css/form.css";
+import Head from "next/head";
+import Link from "next/link";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,12 +11,12 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <div className="top-bar">
+        <p>Users</p>
         <div className="nav">
           <Link href="/">Home</Link>
           <Link href="/new">Add User</Link>
         </div>
 
-        <p>Users</p>
         {/* <img
           id="title"
           src="https://upload.wikimedia.org/wikipedia/commons/1/1f/User_logo_with_flowers.png"
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </div>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,25 +1,25 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import dbConnect from '../../lib/dbConnect'
-import User from '../../models/User'
+import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import dbConnect from "../../lib/dbConnect";
+import User from "../../models/User";
 
 /* Allows you to view user card info and delete user card*/
 const UserPage = ({ user }) => {
-  const router = useRouter()
-  const [message, setMessage] = useState('')
+  const router = useRouter();
+  const [message, setMessage] = useState("");
   const handleDelete = async () => {
-    const userID = router.query.id
+    const userID = router.query.id;
 
     try {
       await fetch(`/api/users/${userID}`, {
-        method: 'Delete',
-      })
-      router.push('/')
+        method: "Delete",
+      });
+      router.push("/");
     } catch (error) {
-      setMessage('Failed to delete the user.')
+      setMessage("Failed to delete the user.");
     }
-  }
+  };
 
   return (
     <div key={user._id}>
@@ -31,7 +31,7 @@ const UserPage = ({ user }) => {
           <p className="email">Email: {user.Email}</p>
 
           {/* Extra User Info: Likes and Dislikes */}
-          <div className="likes info">
+          {/* <div className="likes info">
             <p className="label">Likes</p>
             <ul>
               {user.likes.map((data, index) => (
@@ -46,7 +46,7 @@ const UserPage = ({ user }) => {
                 <li key={index}>{data} </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           <div className="btn-container">
             <Link href="/[id]/edit" as={`/${user._id}/edit`} legacyBehavior>
@@ -60,16 +60,16 @@ const UserPage = ({ user }) => {
       </div>
       {message && <p>{message}</p>}
     </div>
-  )
-}
+  );
+};
 
 export async function getServerSideProps({ params }) {
-  await dbConnect()
+  await dbConnect();
 
-  const user = await User.findById(params.id).lean()
-  user._id = user._id.toString()
+  const user = await User.findById(params.id).lean();
+  user._id = user._id.toString();
 
-  return { props: { user } }
+  return { props: { user } };
 }
 
-export default UserPage
+export default UserPage;
